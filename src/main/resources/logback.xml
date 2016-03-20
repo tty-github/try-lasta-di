@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE logback>
+<configuration>
+	<property name="log.level" value="${log.level:-debug}" />
+	<property name="log.pattern" value="%d [%t] %-5p \\(%logger{36}\\) - %m%n" />
+
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${log.pattern}</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>${log.console.level}</level>
+		</filter>
+	</appender>
+
+	<logger name="org.dbflute" additivity="false" level="${log.level}">
+		<appender-ref ref="console" />
+	</logger>
+	<logger name="org.lastaflute" additivity="false" level="${log.level}">
+		<appender-ref ref="console" />
+	</logger>
+	<logger name="com.example" additivity="false" level="${log.level}">
+		<appender-ref ref="console" />
+	</logger>
+	<root level="error">
+		<appender-ref ref="console" />
+	</root>
+</configuration>
